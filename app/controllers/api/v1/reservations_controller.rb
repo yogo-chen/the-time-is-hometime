@@ -3,7 +3,7 @@
 module Api
   module V1
     class ReservationsController < ApplicationController
-      def create
+      def upsert
         data = PartnerManager::DynamicParserService.call(context, json_body)
         reservation = nil
 

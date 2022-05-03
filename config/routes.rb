@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api, format: :json do
     namespace :v1 do
-      resources :reservations, only: :create
+      resources :reservations, only: [] do
+        post 'upsert', on: :collection
+      end
     end
   end
 end
