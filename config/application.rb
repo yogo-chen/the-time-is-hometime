@@ -18,8 +18,9 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-if %w[development test].include? ENV['RAILS_ENV']
+unless Rails.env.production?
   Dotenv::Railtie.load
+  Dotenv.load('.env.sample')
 end
 
 module Hometime
