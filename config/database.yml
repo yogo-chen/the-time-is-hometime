@@ -12,10 +12,11 @@
 default: &default
   adapter: mysql2
   encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: localhost
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  username: <%= ENV.fetch('DATABASE_USERNAME') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD') %>
+  host: <%= ENV.fetch('DATABASE_HOST') %>
+  port: <%= ENV.fetch('DATABASE_PORT') %>
 
 development:
   <<: *default
@@ -51,5 +52,3 @@ test:
 production:
   <<: *default
   database: hometime_production
-  username: hometime
-  password: <%= ENV["HOMETIME_DATABASE_PASSWORD"] %>
