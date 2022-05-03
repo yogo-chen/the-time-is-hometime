@@ -12,7 +12,7 @@ module PartnerManager
 
       def call
         result = PartnerBetaPayloadContract.new.call(payload)
-        raise StandardError, 'Failed to parse partner beta payload' if result.failure? # TODO: error class
+        raise Errors::UnparseablePayloadError if result.failure?
 
         { reservation: reservation_data(result), guest: guest_data(result) }
       end

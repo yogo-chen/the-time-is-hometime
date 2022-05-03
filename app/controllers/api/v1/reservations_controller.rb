@@ -12,7 +12,7 @@ module Api
           reservation = ReservationManager::UpsertService.call(context, data[:reservation].merge(guest: guest))
         end
 
-        render json: { data: reservation }
+        render_resource(reservation)
       end
     end
   end

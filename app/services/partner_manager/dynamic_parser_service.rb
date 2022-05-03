@@ -26,7 +26,7 @@ module PartnerManager
         result = call_parser_service(parser_service)
         return result unless result.nil?
       end
-      raise 'Failed to dynamically parse partner payload' # TODO: error class
+      raise Errors::UnparseablePayloadError
     end
 
     private
