@@ -14,10 +14,7 @@ module PartnerManager
         result = PartnerAlphaPayloadContract.new.call(payload)
         raise StandardError, 'Failed to parse partner alpha payload' if result.failure? # TODO: error class
 
-        {
-          reservation: reservation_data(result),
-          guest: guest_data(result)
-        }
+        { reservation: reservation_data(result), guest: guest_data(result) }
       end
 
       private
