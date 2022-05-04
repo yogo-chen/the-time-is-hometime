@@ -7,17 +7,41 @@
     $ docker-compose up
     ```
 
-2. Prepare database, only for the first run after building Docker containers.
+2. Prepare database, only for the first run after running database container.
     ```console
     $ docker-compose run --rm api bundle exec rails db:prepare
     ```
 
-3. Send reservation API request.
+3. Send reservation API request, **POST** http://0.0.0.0:3000/api/v1/reservations/upsert.
     ```
-    POST http://0.0.0.0:3000/api/v1/reservations/upsert
+    $ curl -X POST http://0.0.0.0:3000/api/v1/reservations/upsert \
+        -H 'Content-Type: application/json; charset=utf-8' \
+        --data-raw '
+        {
+            "reservation_code": "YYY12345678",
+            "start_date": "2021-04-14",
+            "end_date": "2021-04-18",
+            "nights": 4,
+            "guests": 4,
+            "adults": 2,
+            "children": 2,
+            "infants": 0,
+            "status": "accepted",
+            "guest": {
+                "first_name": "Wayne",
+                "last_name": "Woodbridge",
+                "phone": "639123456789",
+                "email": "wayne_woodbridge@bnb.com"
+            },
+            "currency": "AUD",
+            "payout_price": "4200.00",
+            "security_price": "500",
+            "total_price": "4700.00"
+        }
+        '
     ```
 
-    **Example Payload**
+    **Example Payloads**
 
     ```json
     {
@@ -82,39 +106,38 @@
 
 ## Setup
 
-1. Install gems.
+1. Install required gems using bundler.
     ```console
+    $ gem install bundler
     $ bundle install
     ```
 
-2. Setup environment variables using `.env`.
+2. Setup environment variables using `.env` file.
     ```console
     $ cp .env.sample .env
-    ```
-
-3. Update `.env` file.
-    ```console
     $ nano .env
     ```
 
-4. Setup database.
+3. Create and migrate database.
     ```console
     $ bundle exec rails db:prepare
     ```
 
-5. Run API server.
+4. Run API server.
     ```console
     $ bundle exec rails server
     ```
 
-## Other Commands
+5. API server should be running and accessible through http://0.0.0.0:3000 or http://127.0.0.1:3000.
 
-- Run unit tests.
+## Other Useful Commands
+
+- Run unit tests with RSpec.
     ```console
     $ bundle exec rspec
     ```
 
-- Rails console.
+- Go to Rails console.
     ```console
     $ bundle exec rails console
     ```
