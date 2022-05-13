@@ -1,14 +1,21 @@
 # the-time-is-hometime
 
+> Please see feedback below from our lead engineer regarding your test submission:
+> 
+> - Error handling could be improved
+> - Global context object, instantiated from controller and passed to domain services, making the implementation tightly coupled.
+> 
+> This unfortunately means that we are unable to proceed to the next phase of the application.
+
 ## Try With Docker
 
 1. Build and run API server and other dependencies.
-    ```console
+    ```shell
     $ docker-compose up
     ```
 
 2. Prepare database, only for the first run after running database container.
-    ```console
+    ```shell
     $ docker-compose run --rm api bundle exec rails db:prepare
     ```
 
@@ -107,24 +114,24 @@
 ## Setup
 
 1. Install required gems using bundler.
-    ```console
+    ```shell
     $ gem install bundler
     $ bundle install
     ```
 
 2. Setup environment variables using `.env` file.
-    ```console
+    ```shell
     $ cp .env.sample .env
     $ nano .env
     ```
 
 3. Create and migrate database.
-    ```console
+    ```shell
     $ bundle exec rails db:prepare
     ```
 
 4. Run API server.
-    ```console
+    ```shell
     $ bundle exec rails server
     ```
 
@@ -133,11 +140,11 @@
 ## Other Useful Commands
 
 - Run unit tests with RSpec.
-    ```console
+    ```shell
     $ bundle exec rspec
     ```
 
 - Go to Rails console.
-    ```console
+    ```shell
     $ bundle exec rails console
     ```
